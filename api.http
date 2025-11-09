@@ -1,0 +1,32 @@
+### Recuperar todas las peliculas
+GET http://localhost:3000/movies
+
+### Recuperar una pelicula por ID
+GET http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recuperar peliculas por genero
+GET http://localhost:3000/movies?genre=Action
+
+### Crear una nueva pelicula
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Shrek",
+  "year": 2001,
+  "director": "William Steig",
+  "duration": 138,
+  "poster": "https://static.wikia.nocookie.net/shrek/images/8/85/Shrek_2001_poster.jpg",
+  "genre": ["Action", "Adventure", "Animation", "Comedy", "Family", "Fantasy"],
+  "rate": 9.5
+}
+
+### Actualizar una nueva pelicula
+
+PATCH http://localhost:3000/movies/60b7dde8-be7a-4a10-9556-07918b69d79e
+Content-Type: application/json
+
+{
+  "title": "Shrek 3",
+  "year": 2020
+}
