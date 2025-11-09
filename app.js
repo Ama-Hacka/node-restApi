@@ -4,9 +4,11 @@ const movies = require('./movies.json');
 const cors = require('cors');
 const { validateMovie, validatePartialMovie } = require('./schemas/movies.js');
 
+const PORT = process.env.PORT ?? 3000;
+
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors()); // Allow all origins
 app.disable('x-powered-by');      
 
 
@@ -14,13 +16,12 @@ app.disable('x-powered-by');
 app.get('/', (req, res) => {
     res.type('html');
     res.send(`<h1>Welcome to the Movies API</h1>
-        <a href="http://localhost:3000/movies">Watch movies here</a>`);
+        <a href="http://localhost:${PORT}/movies">Watch movies here</a>`);
         
 });
 
 
 app.get('/movies', (req, res) => {
-    res.header('access-control-allow-origin', 'http://127.0.0.1:3001');
     const {genre} = req.query;
     if (genre) {
         const filteredMovies = movies.filter(
@@ -95,7 +96,7 @@ app.patch('/movies/:id',(req, res) => {
 
 });
 
-const PORT = process.env.PORT ?? 3000;
+
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
