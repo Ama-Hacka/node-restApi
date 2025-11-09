@@ -14,9 +14,13 @@ app.disable('x-powered-by');
 
 
 app.get('/', (req, res) => {
+    const protocol = req.protocol; // 'http' or 'https'
+    const host = req.get('host'); // 'localhost:3000' or 'node-restapi-pyre.onrender.com'
+    const baseUrl = `${protocol}://${host}`;
+    
     res.type('html');
     res.send(`<h1>Welcome to the Movies API</h1>
-        <a href="http://localhost:${PORT}/movies">Watch movies here</a>`);
+        <a href="${baseUrl}/movies">Watch movies here</a>`);
         
 });
 
